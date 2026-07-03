@@ -1,26 +1,33 @@
 # မေမေ့လက်စွဲ
 
-A minimal React + Vite cooking assistant web app with local recipe data and ingredient matching.
+MayMay's Latt Swal is a minimal Myanmar cooking assistant web app built for the ch-3 personal project. It demonstrates a deterministic MCP + Skill + Agent workflow with a local recipe dataset.
 
 ## Features
 
-- Meal suggestion button
-- Ingredient-based recipe search
-- Recipe detail view
-- Local recipe dataset via `src/data/recipes.json`
-- Simple agent + skill module separation
+- Random meal suggestion with 3 recipe options
+- Ingredient-based recipe search with overlap scoring
+- Recipe detail view with Myanmar-first ingredients and steps
+- Local offline dataset at `data/recipes.json`
+- Claude Code evidence files:
+  - `.mcp.json`
+  - `.claude/skills/recipe-assistant/SKILL.md`
+  - `.claude/agents/meal-planner.md`
 
-## Run locally
+## Run Locally
 
-1. Install dependencies:
-   ```bash
-   npm install
-   ```
-2. Start development server:
-   ```bash
-   npm run dev
-   ```
+```bash
+npm install
+npm run dev
+```
 
-## Notes
+## Build
 
-This implementation follows the PRD design and uses a deterministic local data flow.
+```bash
+npm run build
+```
+
+## Chapter 3 Files
+
+- Report: `ch-3/khinmyatthu2193/report.md`
+- Marp slides: `ch-3/pechakucha-6x20.md`
+- Working app source: `src/`

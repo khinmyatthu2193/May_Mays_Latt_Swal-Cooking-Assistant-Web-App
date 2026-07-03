@@ -1,23 +1,30 @@
-export function formatRecipesList(recipes) {
-  if (!recipes || recipes.length === 0) {
-    return 'တစ်ခုမှ မတွေ့ပါ။ အခြားပါဝင်ပစ္စည်းတွေကို ထပ်မံ ထည့်ကြည့်ပါ။';
-  }
+export function formatDifficulty(value) {
+  const labels = {
+    easy: 'လွယ်',
+    medium: 'အလယ်အလတ်',
+  };
 
-  const lines = recipes.map((recipe, index) => {
-    const scoreLine = recipe.match_score != null ? ` (ပြိုင်ဆိုင်မှု: ${recipe.match_score})` : '';
-    return `🍛 ${index + 1}. ${recipe.name_mm} / ${recipe.name_en}${scoreLine}\n⏱ Cooking Time: ${recipe.cooking_time} min\n🧂 Ingredients: ${recipe.ingredients.join(', ')}\n`;
-  });
+  return labels[value] ?? value;
+}
 
-  return lines.join('\n');
+export function formatRecipeSummary(recipe) {
+  return `${recipe.name_mm} / ${recipe.name_en} - ${recipe.time}`;
 }
 
 export function formatRecipeDetail(recipe) {
-  if (!recipe) {
-    return '';
-  }
+  if (!recipe) return '';
 
-  const ingredients = recipe.ingredients.map((item) => `- ${item}`).join('\n');
-  const steps = recipe.steps.map((step, index) => `${index + 1}. ${step}`).join('\n');
+  const ingredients = recipe.ingredients_mm.map((item) => `- ${item}`).join('\n');
+  const steps = recipe.steps_mm.map((step, index) => `${index + 1}. ${step}`).join('\n');
 
-  return `🍛 ${recipe.name_mm} / ${recipe.name_en}\n\n⏱ Cooking Time: ${recipe.cooking_time} min\n🧂 Ingredients:\n${ingredients}\n\n👨‍🍳 Steps:\n${steps}`;
+  return `🍛 ${recipe.name_mm} / ${recipe.name_en}
+
+⏱ Cooking Time: ${recipe.time}
+Difficulty: ${formatDifficulty(recipe.difficulty)}
+
+🧂 Ingredients:
+${ingredients}
+
+👨‍🍳 Steps:
+${steps}`;
 }

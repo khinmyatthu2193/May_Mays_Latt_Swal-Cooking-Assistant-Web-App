@@ -14,15 +14,15 @@ Format recipe data from `data/recipes.json` into a clear Myanmar-first cooking r
 ## Output Format
 
 ```text
-🍛 {name_mm} / {name_en}
+Recipe: {name_mm} / {name_en}
 
-⏱ Cooking Time: {time}
+Cooking Time: {time}
 Difficulty: {difficulty}
 
-🧂 Ingredients:
+Ingredients:
 - {ingredient_mm}
 
-👨‍🍳 Steps:
+Steps:
 1. {step_mm}
 2. {step_mm}
 3. {step_mm}
