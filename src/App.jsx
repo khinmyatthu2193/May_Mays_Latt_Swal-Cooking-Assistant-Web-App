@@ -133,10 +133,8 @@ export default function App() {
           <img src={logoUrl} alt="" />
         </div>
         <div className="brand-text">
-          <h1>မေမေ့လက်စွဲ</h1>
-          <p className="brand-sub">
-            <span>MCP + Skill + Agent</span> &middot; Myanmar cooking assistant
-          </p>
+          <h1 className="sr-only">မေမေ့လက်စွဲ</h1>
+          <p className="brand-sub">နေ့တိုင်း ဟင်းရွေးရတာ ပိုလွယ်စေမယ့် Myanmar cooking assistant</p>
         </div>
       </header>
 
