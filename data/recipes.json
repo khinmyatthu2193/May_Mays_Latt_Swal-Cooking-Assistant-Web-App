@@ -1,0 +1,134 @@
+[
+  {
+    "id": "egg_tomato_curry",
+    "name_mm": "ကြက်ဥခရမ်းချဉ်သီးချက်",
+    "name_en": "Egg Tomato Curry",
+    "ingredients_mm": ["ကြက်ဥ", "ခရမ်းချဉ်သီး", "ကြက်သွန်နီ", "ဆီ", "ဆား", "နနွင်း"],
+    "ingredients_en": ["egg", "tomato", "onion", "oil", "salt", "turmeric"],
+    "steps_mm": ["ကြက်ဥကို ပြုတ်ပြီး အခွံခွာပါ။", "ကြက်သွန်နီနှင့် ခရမ်းချဉ်သီးကို ဆီသတ်ပါ။", "နနွင်း၊ ဆားထည့်ပြီး ကြက်ဥနှင့်အတူ ၅ မိနစ်ခန့် ချက်ပါ။"],
+    "time": "20 min",
+    "time_minutes": 20,
+    "difficulty": "easy"
+  },
+  {
+    "id": "fried_rice",
+    "name_mm": "ထမင်းကြော်",
+    "name_en": "Fried Rice",
+    "ingredients_mm": ["ထမင်း", "ကြက်ဥ", "ကြက်သွန်နီ", "ကြက်သွန်မြိတ်", "ပဲငံပြာရည်", "ဆီ"],
+    "ingredients_en": ["rice", "egg", "onion", "spring onion", "soy sauce", "oil"],
+    "steps_mm": ["ကြက်သွန်နီကို ဆီသတ်ပါ။", "ကြက်ဥထည့်မွှေပြီး ထမင်းထည့်ကြော်ပါ။", "ပဲငံပြာရည်နှင့် ကြက်သွန်မြိတ်ထည့်ပြီး သမအောင် ကြော်ပါ။"],
+    "time": "15 min",
+    "time_minutes": 15,
+    "difficulty": "easy"
+  },
+  {
+    "id": "roselle_soup",
+    "name_mm": "ချဉ်ပေါင်ဟင်းချို",
+    "name_en": "Roselle Leaf Soup",
+    "ingredients_mm": ["ချဉ်ပေါင်ရွက်", "ပုစွန်ခြောက်", "ကြက်သွန်ဖြူ", "ငါးပိ", "ဆား"],
+    "ingredients_en": ["roselle leaves", "dried shrimp", "garlic", "fish paste", "salt"],
+    "steps_mm": ["ချဉ်ပေါင်ရွက်ကို သန့်စင်ပြီး လှီးပါ။", "ရေထဲတွင် ပုစွန်ခြောက်၊ ကြက်သွန်ဖြူ၊ ငါးပိ ထည့်ပြုတ်ပါ။", "ချဉ်ပေါင်ရွက်ထည့်ပြီး နူးသည်အထိ ပြုတ်ပါ။"],
+    "time": "25 min",
+    "time_minutes": 25,
+    "difficulty": "easy"
+  },
+  {
+    "id": "chicken_potato_curry",
+    "name_mm": "ကြက်သားအာလူးဟင်း",
+    "name_en": "Chicken Potato Curry",
+    "ingredients_mm": ["ကြက်သား", "အာလူး", "ကြက်သွန်နီ", "ကြက်သွန်ဖြူ", "ဂျင်း", "ဆား", "နနွင်း"],
+    "ingredients_en": ["chicken", "potato", "onion", "garlic", "ginger", "salt", "turmeric"],
+    "steps_mm": ["ကြက်သွန်၊ ကြက်သွန်ဖြူ၊ ဂျင်းကို ဆီသတ်ပါ။", "ကြက်သားထည့်ပြီး အရောင်ပြောင်းသည်အထိ မွှေပါ။", "အာလူး၊ ရေ၊ ဆားထည့်ပြီး နူးသည်အထိ ချက်ပါ။"],
+    "time": "45 min",
+    "time_minutes": 45,
+    "difficulty": "medium"
+  },
+  {
+    "id": "fish_sour_curry",
+    "name_mm": "ငါးချဉ်ရည်ဟင်း",
+    "name_en": "Fish Sour Curry",
+    "ingredients_mm": ["ငါး", "ခရမ်းချဉ်သီး", "မန်ကျည်းရည်", "ကြက်သွန်နီ", "ကြက်သွန်ဖြူ", "ငရုတ်သီး"],
+    "ingredients_en": ["fish", "tomato", "tamarind", "onion", "garlic", "chili"],
+    "steps_mm": ["ကြက်သွန်နီ၊ ကြက်သွန်ဖြူနှင့် ခရမ်းချဉ်သီးကို ဆီသတ်ပါ။", "ငါးထည့်ပြီး မန်ကျည်းရည်နှင့် ရေထည့်ပါ။", "ငရုတ်သီးထည့်ကာ ၁၅ မိနစ်ခန့် ချက်ပါ။"],
+    "time": "35 min",
+    "time_minutes": 35,
+    "difficulty": "medium"
+  },
+  {
+    "id": "pennywort_salad",
+    "name_mm": "မြင်းခွာရွက်သုပ်",
+    "name_en": "Pennywort Salad",
+    "ingredients_mm": ["မြင်းခွာရွက်", "ကြက်သွန်နီ", "ပဲမှုန့်", "နှမ်း", "သံပရာရည်", "ဆီချက်"],
+    "ingredients_en": ["pennywort", "onion", "bean powder", "sesame", "lime", "fried oil"],
+    "steps_mm": ["မြင်းခွာရွက်ကို သန့်စင်ပြီး လှီးပါ။", "ကြက်သွန်နီ၊ ပဲမှုန့်၊ နှမ်း ထည့်ပါ။", "သံပရာရည်နှင့် ဆီချက်ထည့်ပြီး သုပ်ပါ။"],
+    "time": "12 min",
+    "time_minutes": 12,
+    "difficulty": "easy"
+  },
+  {
+    "id": "water_spinach_stir_fry",
+    "name_mm": "ကန်စွန်းရွက်ကြော်",
+    "name_en": "Water Spinach Stir Fry",
+    "ingredients_mm": ["ကန်စွန်းရွက်", "ကြက်သွန်ဖြူ", "ငရုတ်သီး", "ဆီ", "ဆား", "ပဲငံပြာရည်"],
+    "ingredients_en": ["water spinach", "garlic", "chili", "oil", "salt", "soy sauce"],
+    "steps_mm": ["ကန်စွန်းရွက်ကို ရေဆေးပြီး ဖြတ်ပါ။", "ကြက်သွန်ဖြူနှင့် ငရုတ်သီးကို ဆီပူတွင် ဆီသတ်ပါ။", "ကန်စွန်းရွက်ထည့်ပြီး မီးပြင်းပြင်းဖြင့် ခဏကြော်ပါ။"],
+    "time": "10 min",
+    "time_minutes": 10,
+    "difficulty": "easy"
+  },
+  {
+    "id": "lentil_soup",
+    "name_mm": "ပဲဟင်းချို",
+    "name_en": "Lentil Soup",
+    "ingredients_mm": ["ပဲနီလေး", "ကြက်သွန်နီ", "ကြက်သွန်ဖြူ", "နနွင်း", "ဆား", "ဆီ"],
+    "ingredients_en": ["lentil", "onion", "garlic", "turmeric", "salt", "oil"],
+    "steps_mm": ["ပဲနီလေးကို ရေဆေးပြီး နူးသည်အထိ ပြုတ်ပါ။", "ကြက်သွန်နီ၊ ကြက်သွန်ဖြူကို ဆီသတ်ပါ။", "ဆီသတ်ထားသည်ကို ပဲဟင်းထဲထည့်ပြီး ဆားညှိပါ။"],
+    "time": "30 min",
+    "time_minutes": 30,
+    "difficulty": "easy"
+  },
+  {
+    "id": "tea_leaf_salad",
+    "name_mm": "လက်ဖက်သုပ်",
+    "name_en": "Tea Leaf Salad",
+    "ingredients_mm": ["လက်ဖက်", "ပဲကြော်", "နှမ်း", "ခရမ်းချဉ်သီး", "ကြက်သွန်ဖြူကြော်", "သံပရာရည်"],
+    "ingredients_en": ["tea leaf", "fried beans", "sesame", "tomato", "fried garlic", "lime"],
+    "steps_mm": ["လက်ဖက်ကို ဆီနည်းနည်းနှင့် ဖြန့်ပါ။", "ပဲကြော်၊ နှမ်း၊ ခရမ်းချဉ်သီး ထည့်ပါ။", "သံပရာရည်နှင့် ကြက်သွန်ဖြူကြော်ထည့်ပြီး သုပ်ပါ။"],
+    "time": "10 min",
+    "time_minutes": 10,
+    "difficulty": "easy"
+  },
+  {
+    "id": "tofu_nway",
+    "name_mm": "တိုဖူးနွေး",
+    "name_en": "Warm Shan Tofu",
+    "ingredients_mm": ["တိုဖူးမှုန့်", "ရေ", "ဆား", "ကြက်သွန်ဖြူဆီချက်", "ငရုတ်သီးဆီ", "နံနံပင်"],
+    "ingredients_en": ["tofu flour", "water", "salt", "garlic oil", "chili oil", "coriander"],
+    "steps_mm": ["တိုဖူးမှုန့်ကို ရေနှင့်ဖျော်ပြီး မီးအေးအေးဖြင့် မွှေပါ။", "ပျစ်လာပါက ဆားညှိပြီး ပန်းကန်ထဲထည့်ပါ။", "ကြက်သွန်ဖြူဆီချက်၊ ငရုတ်သီးဆီ၊ နံနံပင်နှင့် စားပါ။"],
+    "time": "25 min",
+    "time_minutes": 25,
+    "difficulty": "medium"
+  },
+  {
+    "id": "pork_mustard_curry",
+    "name_mm": "ဝက်သားမုန်ညင်းချဉ်ဟင်း",
+    "name_en": "Pork Mustard Green Curry",
+    "ingredients_mm": ["ဝက်သား", "မုန်ညင်းချဉ်", "ကြက်သွန်နီ", "ကြက်သွန်ဖြူ", "ဂျင်း", "ငရုတ်သီး"],
+    "ingredients_en": ["pork", "pickled mustard greens", "onion", "garlic", "ginger", "chili"],
+    "steps_mm": ["ကြက်သွန်၊ ကြက်သွန်ဖြူ၊ ဂျင်းကို ဆီသတ်ပါ။", "ဝက်သားထည့်ပြီး နူးသည်အထိ ချက်ပါ။", "မုန်ညင်းချဉ်နှင့် ငရုတ်သီးထည့်ကာ အရသာဝင်အောင် ချက်ပါ။"],
+    "time": "50 min",
+    "time_minutes": 50,
+    "difficulty": "medium"
+  },
+  {
+    "id": "okra_fish_paste_dip",
+    "name_mm": "ရုံးပတီသီးငါးပိချက်",
+    "name_en": "Okra Fish Paste Dip",
+    "ingredients_mm": ["ရုံးပတီသီး", "ငါးပိ", "ကြက်သွန်ဖြူ", "ငရုတ်သီး", "ဆီ", "ဆား"],
+    "ingredients_en": ["okra", "fish paste", "garlic", "chili", "oil", "salt"],
+    "steps_mm": ["ရုံးပတီသီးကို လှီးပြီး ခဏပြုတ်ပါ။", "ကြက်သွန်ဖြူ၊ ငရုတ်သီး၊ ငါးပိကို ဆီသတ်ပါ။", "ရုံးပတီသီးထည့်ပြီး အနံ့မွှေးသည်အထိ မွှေပါ။"],
+    "time": "18 min",
+    "time_minutes": 18,
+    "difficulty": "easy"
+  }
+]
