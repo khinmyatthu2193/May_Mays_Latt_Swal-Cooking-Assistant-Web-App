@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import {
+  ArrowLeft,
   ChefHat,
-  Clock3,
   Flame,
   ListChecks,
   Search,
@@ -9,44 +9,77 @@ import {
   Sparkles,
   Utensils,
   X,
-  Database,
-  Zap,
-  FileText,
-  SearchX,
 } from 'lucide-react';
 import logoUrl from '../logo.png';
 import recipes from '../data/recipes.json';
 import { mealPlannerAgent } from './agent.js';
-import { formatDifficulty, formatRecipeDetail, formatRecipeSummary } from './skill.js';
+import { formatDifficulty } from './skill.js';
+
+const recipeIconMap = {
+  egg_tomato_curry: '🍳',
+  fried_rice: '🍚',
+  roselle_soup: '🥣',
+  chicken_potato_curry: '🍛',
+  fish_sour_curry: '🐟',
+  pennywort_salad: '🥗',
+  water_spinach_stir_fry: '🥬',
+  lentil_soup: '🍲',
+  tea_leaf_salad: '🍃',
+  tofu_nway: '🥘',
+  pork_mustard_curry: '🍖',
+  okra_fish_paste_dip: '🌶️',
+};
+
+const difficultyTone = {
+  easy: 'easy',
+  medium: 'medium',
+  hard: 'hard',
+};
+
+const decisionSteps = [
+  'စဉ်းစားနေပါတယ်...',
+  'ပါဝင်ပစ္စည်းတွေ စစ်နေပါတယ်...',
+  'ကိုက်ညီတဲ့ဟင်းတွေ ရှာနေပါတယ်...',
+  'ဟင်းလျာတွေ ရှာတွေ့ပါပြီ',
+];
+
+function getRecipeIcon(recipe) {
+  return recipeIconMap[recipe.id] ?? '🍽️';
+}
+
+function getDifficultyTone(recipe) {
+  return difficultyTone[recipe.difficulty] ?? 'medium';
+}
 
 function RecipeCard({ recipe, active, onSelect }) {
+  const tone = getDifficultyTone(recipe);
+
   return (
     <button className={`recipe-card ${active ? 'active' : ''}`} onClick={() => onSelect(recipe)}>
-      <span className="recipe-card-title">{recipe.name_mm}</span>
-      <span className="recipe-card-sub">{recipe.name_en}</span>
+      <span className="recipe-card-top">
+        <span className="recipe-title-group">
+          <span className="recipe-card-title">{recipe.name_mm}</span>
+          <span className="recipe-card-sub">{recipe.name_en}</span>
+        </span>
+      </span>
+
       <span className="recipe-card-meta">
-        <span className="meta-item">
-          <Clock3 size={14} aria-hidden="true" />
+        <span className="time-badge compact">
+          <span aria-hidden="true">⏱</span>
           {recipe.time}
         </span>
-        <span className="meta-item">
+        <span className={`difficulty-badge ${tone}`}>
           <Flame size={14} aria-hidden="true" />
           {formatDifficulty(recipe.difficulty)}
         </span>
       </span>
-      {recipe.matchScore ? (
-        <span className="match-pill">
-          <Sparkles size={14} aria-hidden="true" />
-          {recipe.matchScore} ခု ကိုက်ညီ
-        </span>
-      ) : (
-        <span className="ingredients-preview">{recipe.ingredients_mm.slice(0, 3).join('၊ ')}</span>
-      )}
     </button>
   );
 }
 
-function RecipeDetail({ recipe }) {
+function RecipeDetail({ recipe, onBack }) {
+  const [checkedSteps, setCheckedSteps] = useState({});
+
   if (!recipe) {
     return (
       <section className="detail empty">
@@ -58,17 +91,42 @@ function RecipeDetail({ recipe }) {
     );
   }
 
+  const tone = getDifficultyTone(recipe);
+  const completedCount = recipe.steps_mm.filter((_, index) => checkedSteps[`${recipe.id}-${index}`]).length;
+
+  function toggleStep(index) {
+    const stepKey = `${recipe.id}-${index}`;
+    setCheckedSteps((current) => ({
+      ...current,
+      [stepKey]: !current[stepKey],
+    }));
+  }
+
   return (
     <section className="detail" aria-live="polite">
+      <button className="back-button" type="button" onClick={onBack}>
+        <ArrowLeft size={18} aria-hidden="true" />
+        ဟင်းလျာစာရင်းသို့ ပြန်သွားမယ်
+      </button>
+
       <div className="detail-heading">
-        <div>
-          <p className="detail-eyebrow">recipe-assistant output</p>
-          <h2>{recipe.name_mm}</h2>
-          <p className="detail-name-en">{recipe.name_en}</p>
+        <div className="detail-title-row">
+          <span className="detail-recipe-icon" aria-hidden="true">{getRecipeIcon(recipe)}</span>
+          <div>
+            <p className="detail-eyebrow">ရွေးထားသောဟင်းလျာ</p>
+            <h2>{recipe.name_mm}</h2>
+            <p className="detail-name-en">{recipe.name_en}</p>
+          </div>
         </div>
-        <div className="time-badge">
-          <Clock3 size={16} aria-hidden="true" />
-          {recipe.time}
+        <div className="detail-badge-stack">
+          <div className="time-badge">
+            <span aria-hidden="true">⏱</span>
+            {recipe.time}
+          </div>
+          <div className={`difficulty-badge ${tone}`}>
+            <Flame size={14} aria-hidden="true" />
+            {formatDifficulty(recipe.difficulty)}
+          </div>
         </div>
       </div>
 
@@ -89,65 +147,100 @@ function RecipeDetail({ recipe }) {
           <h3>
             <ListChecks size={16} aria-hidden="true" />
             ချက်ပြုတ်နည်း
+            <span className="step-progress">{completedCount}/{recipe.steps_mm.length}</span>
           </h3>
           <ol className="steps-list">
             {recipe.steps_mm.map((step, index) => (
-              <li key={index}>{step}</li>
+              <li key={index} className={checkedSteps[`${recipe.id}-${index}`] ? 'done' : ''}>
+                <label className="step-check">
+                  <input
+                    type="checkbox"
+                    checked={Boolean(checkedSteps[`${recipe.id}-${index}`])}
+                    onChange={() => toggleStep(index)}
+                  />
+                  <span className="step-box" aria-hidden="true" />
+                  <span className="step-copy">{step}</span>
+                </label>
+              </li>
             ))}
           </ol>
         </div>
-      </div>
-
-      <div className="formatted-output">
-        <p className="fo-label">Skill formatted output</p>
-        {formatRecipeDetail(recipe)}
       </div>
     </section>
   );
 }
 
 export default function App() {
-  const initialResult = useMemo(() => mealPlannerAgent('', recipes), []);
+  const emptyResult = useMemo(() => ({ intent: 'idle', title: '', recipes: [] }), []);
   const [query, setQuery] = useState('');
-  const [result, setResult] = useState(initialResult);
-  const [selectedRecipe, setSelectedRecipe] = useState(initialResult.recipes[0]);
+  const [result, setResult] = useState(emptyResult);
+  const [selectedRecipe, setSelectedRecipe] = useState(null);
+  const [showSearch, setShowSearch] = useState(false);
+  const [isThinking, setIsThinking] = useState(false);
+  const [decisionIndex, setDecisionIndex] = useState(0);
+  const hasResults = result.recipes.length > 0;
 
   function runPlanner(inputValue = query) {
-    const nextResult = mealPlannerAgent(inputValue, recipes);
-    setResult(nextResult);
-    setSelectedRecipe(nextResult.recipes[0] ?? null);
+    setSelectedRecipe(null);
+    setIsThinking(true);
+    setDecisionIndex(0);
+
+    decisionSteps.forEach((_, index) => {
+      window.setTimeout(() => setDecisionIndex(index), index * 420);
+    });
+
+    window.setTimeout(() => {
+      const nextResult = mealPlannerAgent(inputValue, recipes);
+      setResult(nextResult);
+      setIsThinking(false);
+      setDecisionIndex(decisionSteps.length - 1);
+    }, decisionSteps.length * 420);
   }
 
   function clearSearch() {
     setQuery('');
-    const nextResult = mealPlannerAgent('', recipes);
-    setResult(nextResult);
-    setSelectedRecipe(nextResult.recipes[0]);
+    setResult(emptyResult);
+    setSelectedRecipe(null);
+    setIsThinking(false);
+    setDecisionIndex(0);
+  }
+
+  function startIngredientMode() {
+    setShowSearch(true);
+    setResult(emptyResult);
+    setSelectedRecipe(null);
   }
 
   return (
     <main className="app-shell">
-      {/* ---- Header ---- */}
       <header className="app-header">
         <div className="brand-icon-wrap" aria-hidden="true">
           <img src={logoUrl} alt="" />
         </div>
-        <div className="brand-text">
-          <h1 className="sr-only">မေမေ့လက်စွဲ</h1>
-          <p className="brand-sub">နေ့တိုင်း ဟင်းရွေးရတာ ပိုလွယ်စေမယ့် Myanmar cooking assistant</p>
-        </div>
+        <h1 className="sr-only">မေမေ့လက်စွဲ</h1>
       </header>
 
-      {/* ---- Actions ---- */}
-      <div className="action-area">
-        <div className="action-row">
-          <button className="btn-suggest" onClick={() => runPlanner('')}>
+      {selectedRecipe ? (
+        <div className="detail-screen">
+          <RecipeDetail recipe={selectedRecipe} onBack={() => setSelectedRecipe(null)} />
+        </div>
+      ) : (
+        <>
+      <section className="action-area" aria-label="ဟင်းရွေးရန်">
+        <div className="cta-row">
+          <button className="btn-suggest" onClick={() => runPlanner('')} disabled={isThinking}>
             <Shuffle size={20} aria-hidden="true" />
-            ဒီနေ့ ဘာချက်ရမလဲ?
+            ဒီနေ့ ဘာချက်ရမလဲ
           </button>
+          <button className="btn-secondary-cta" onClick={startIngredientMode} disabled={isThinking}>
+            <Utensils size={20} aria-hidden="true" />
+            ပစ္စည်းနဲ့ချက်မယ်
+          </button>
+        </div>
 
+        {showSearch ? (
           <form
-            className="search-form"
+            className="search-form secondary"
             onSubmit={(event) => {
               event.preventDefault();
               runPlanner();
@@ -159,65 +252,44 @@ export default function App() {
             <input
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="ပါဝင်ပစ္စည်းများ ရိုက်ထည့်ပါ... (ဥပမာ - ကြက်ဥ, ကြက်သွန်)"
-              aria-label="Ingredient input"
+              placeholder="ဥပမာ - ကြက်ဥ, ခရမ်းချဉ်သီး"
+              aria-label="ပါဝင်ပစ္စည်း ရိုက်ထည့်ရန်"
             />
             {query ? (
-              <button type="button" className="btn-clear" onClick={clearSearch} aria-label="Clear search">
+              <button type="button" className="btn-clear" onClick={clearSearch} aria-label="ရှာဖွေမှု ဖျက်ရန်">
                 <X size={16} aria-hidden="true" />
               </button>
             ) : null}
-            <button type="submit" className="btn-search">
+            <button type="submit" className="btn-search" disabled={isThinking}>
               <Search size={16} aria-hidden="true" />
               ရှာမယ်
             </button>
           </form>
-        </div>
-      </div>
+        ) : null}
+      </section>
 
-      {/* ---- Status Bar ---- */}
-      <div className="status-bar">
-        <div className="status-item">
-          <span className="status-icon green">
-            <Database size={18} aria-hidden="true" />
-          </span>
-          <div>
-            <div className="status-value">{recipes.length}</div>
-            <div className="status-label">ချက်ပြုတ်နည်းများ</div>
-          </div>
-        </div>
-        <div className="status-item">
-          <span className="status-icon amber">
-            <Zap size={18} aria-hidden="true" />
-          </span>
-          <div>
-            <div className="status-value">{'< 2s'}</div>
-            <div className="status-label">တုံ့ပြန်ချိန်</div>
-          </div>
-        </div>
-        <div className="status-item">
-          <span className="status-icon orange">
-            <FileText size={18} aria-hidden="true" />
-          </span>
-          <div>
-            <div className="status-value">{result.recipes.length}</div>
-            <div className="status-label">တွေ့ရှိသည့်ဟင်းလျာများ</div>
-          </div>
-        </div>
-      </div>
+      {isThinking ? (
+        <section className="decision-panel" aria-live="polite">
+          {decisionSteps.map((step, index) => (
+            <div key={step} className={`decision-step ${index <= decisionIndex ? 'active' : ''}`}>
+              <span className="decision-dot" aria-hidden="true" />
+              {step}
+            </div>
+          ))}
+        </section>
+      ) : null}
 
-      {/* ---- Results Layout ---- */}
-      <div className="result-layout">
+      <div className={`result-layout ${hasResults ? '' : 'idle'} ${selectedRecipe ? '' : 'no-detail'}`}>
         <div className="list-panel">
           <div className="panel-header">
             <div>
-              <p className="panel-eyebrow">meal-planner result</p>
-              <h2>{result.title}</h2>
+              <p className="panel-eyebrow">ဟင်းလျာအကြံပြုချက်</p>
+              <h2>{hasResults ? result.title : 'အပေါ်က ခလုတ်တစ်ခုကို နှိပ်ပြီး စတင်ပါ'}</h2>
             </div>
             <span className="recipe-count">{result.recipes.length}</span>
           </div>
 
-          {result.recipes.length ? (
+          {hasResults ? (
             <div className="recipe-list">
               {result.recipes.map((recipe) => (
                 <RecipeCard
@@ -229,19 +301,20 @@ export default function App() {
               ))}
             </div>
           ) : (
-            <div className="no-result">
-              <SearchX size={36} aria-hidden="true" />
-              <p>ဥပမာ `ကြက်ဥ, ကြက်သွန်, ခရမ်းချဉ်သီး` လို ပါဝင်ပစ္စည်းများ ရိုက်ထည့်ပြီး ပြန်ရှာကြည့်ပါ။</p>
+            <div className="no-result idle-state">
+              <Sparkles size={34} aria-hidden="true" />
+              <p>ဒီနေ့စားချင်တာကို အမြန်ဆုံး ဆုံးဖြတ်ပေးဖို့ အသင့်ပါ။</p>
             </div>
           )}
         </div>
 
-        <RecipeDetail recipe={selectedRecipe} />
       </div>
+        </>
+      )}
 
-      {/* ---- Footer ---- */}
       <footer className="app-footer">
-        {selectedRecipe ? formatRecipeSummary(selectedRecipe) : 'No recipe selected'}
+        <span>မေမေ့လက်စွဲ</span>
+        <span className="footer-badge">Powered by MCP + Agent + Skill</span>
       </footer>
     </main>
   );
