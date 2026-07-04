@@ -1,37 +1,31 @@
-# MayMay's Latt Swal Implementation Report
+# ch-3 Personal Project - Report
 
-## What It Does
-
-MayMay's Latt Swal is a Myanmar-first cooking assistant that helps users decide what to cook quickly. A user can request a random meal suggestion or enter available ingredients such as `egg, onion, tomato`; the app then returns ranked local recipes and a detailed recipe view.
+github_username: khinmyatthu2193
+personal_repo_url: https://github.com/khinmyatthu2193/May_Mays_Latt_Swal-Cooking-Assistant-Web-App
+project_summary: MayMay's Latt Swal is a Myanmar-first cooking assistant that suggests meals and matches recipes from ingredients.
+slides_url: slides/6x20.md
 
 ## Methodology
 
-I built the project as a small vertical slice instead of many unfinished features. The first step was defining a local recipe schema, then implementing deterministic routing for two intents: meal suggestion and ingredient search. Claude Code helped scaffold the React/Vite project structure, create the MCP/skill/agent evidence files, and keep the implementation aligned with the PRD. Human decisions focused on project scope, Myanmar food selection, and keeping the UI simple enough for daily use.
+I built the project as a small working vertical slice instead of a large unfinished app. First I defined a local Myanmar recipe dataset, then implemented deterministic routing for two core user flows: random meal suggestions and ingredient-based recipe search. Claude Code helped scaffold the React/Vite app, create the MCP/skill/agent evidence files, and keep the implementation aligned with the project scope. Human decisions focused on the recipe choices, Myanmar-first UX, and keeping the app useful for quick daily cooking decisions.
 
-## MCP / Skill / Agent
+## Evidence - Claude Code usage
 
-- MCP: `.mcp.json` configures the filesystem MCP server to expose `./data`.
-- Skill: `.claude/skills/recipe-assistant/SKILL.md` defines the Myanmar-first recipe output format.
-- Agent: `.claude/agents/meal-planner.md` defines intent detection, routing, and ingredient scoring rules.
+- .mcp.json
+- .claude/skills/recipe-assistant/SKILL.md
+- .claude/agents/meal-planner.md
 
-In the runnable frontend, the same responsibilities are mirrored in code:
+### MCP
 
-- `src/agent.js` handles intent detection and recipe matching.
-- `src/skill.js` formats recipe summaries and details.
-- `src/App.jsx` displays the end-to-end flow.
+- path: .mcp.json
+- what: The Filesystem MCP server exposes the local `./data` folder to Claude Code. In this project, it is used for the Myanmar recipe dataset in `data/recipes.json`.
 
-## Evidence
+### Skill
 
-- `.mcp.json`
-- `.claude/skills/recipe-assistant/SKILL.md`
-- `.claude/agents/meal-planner.md`
-- `data/recipes.json`
-- `src/agent.js`
-- `src/skill.js`
-- `src/App.jsx`
-- `ch-3/pechakucha-6x20.md`
+- path: .claude/skills/recipe-assistant/SKILL.md
+- what: The recipe-assistant skill guides Claude Code to format Myanmar-first recipe summaries and detail responses. It keeps the output practical, mobile-friendly, and based only on the supplied recipe data.
 
-## Next Steps
+### Agent
 
-- Add more Myanmar home-cooking recipes to the local dataset.
-- Add a small test file for ingredient scoring and intent detection.
+- path: .claude/agents/meal-planner.md
+- what: The meal-planner agent detects whether the user wants a random meal suggestion or ingredient-based search. It ranks recipes by ingredient matches and passes selected recipes to the recipe-assistant skill.
