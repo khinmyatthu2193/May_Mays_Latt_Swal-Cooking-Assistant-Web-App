@@ -43,6 +43,8 @@ const decisionSteps = [
   'ဟင်းလျာတွေ ရှာတွေ့ပါပြီ',
 ];
 
+const THINKING_DURATION_MS = 5000;
+
 function getRecipeIcon(recipe) {
   return recipeIconMap[recipe.id] ?? '🍽️';
 }
@@ -185,8 +187,10 @@ export default function App() {
     setIsThinking(true);
     setDecisionIndex(0);
 
+    const stepDelay = THINKING_DURATION_MS / decisionSteps.length;
+
     decisionSteps.forEach((_, index) => {
-      window.setTimeout(() => setDecisionIndex(index), index * 420);
+      window.setTimeout(() => setDecisionIndex(index), index * stepDelay);
     });
 
     window.setTimeout(() => {
@@ -194,7 +198,7 @@ export default function App() {
       setResult(nextResult);
       setIsThinking(false);
       setDecisionIndex(decisionSteps.length - 1);
-    }, decisionSteps.length * 420);
+    }, THINKING_DURATION_MS);
   }
 
   function clearSearch() {
@@ -221,11 +225,12 @@ export default function App() {
       </header>
 
       {selectedRecipe ? (
-        <div className="detail-screen">
+        <div className="detail-screen mobile-detail-screen">
           <RecipeDetail recipe={selectedRecipe} onBack={() => setSelectedRecipe(null)} />
         </div>
-      ) : (
-        <>
+      ) : null}
+
+      <div className={`home-screen ${selectedRecipe ? 'has-selected' : ''}`}>
       <section className="action-area" aria-label="ဟင်းရွေးရန်">
         <div className="cta-row">
           <button className="btn-suggest" onClick={() => runPlanner('')} disabled={isThinking}>
@@ -279,7 +284,7 @@ export default function App() {
         </section>
       ) : null}
 
-      <div className={`result-layout ${hasResults ? '' : 'idle'} ${selectedRecipe ? '' : 'no-detail'}`}>
+      <div className={`result-layout ${hasResults ? '' : 'idle'} ${selectedRecipe ? 'has-detail' : 'no-detail'}`}>
         <div className="list-panel">
           <div className="panel-header">
             <div>
@@ -308,9 +313,13 @@ export default function App() {
           )}
         </div>
 
+        {selectedRecipe ? (
+          <div className="desktop-detail-panel">
+            <RecipeDetail recipe={selectedRecipe} onBack={() => setSelectedRecipe(null)} />
+          </div>
+        ) : null}
       </div>
-        </>
-      )}
+      </div>
 
       <footer className="app-footer">
         <span>မေမေ့လက်စွဲ</span>
