@@ -30,11 +30,13 @@ function shuffleRecipes(source) {
 }
 
 function scoreRecipe(recipe, ingredients) {
+  const recipeIngredientsMm = recipe.ingredients_mm ?? recipe.ingredients ?? [];
+  const recipeIngredientsEn = recipe.ingredients_en ?? [];
   const searchable = [
     recipe.name_mm,
     recipe.name_en,
-    ...recipe.ingredients_mm,
-    ...recipe.ingredients_en,
+    ...recipeIngredientsMm,
+    ...recipeIngredientsEn,
   ].map(normalize);
 
   const matchedIngredients = ingredients.filter((term) =>
@@ -67,7 +69,11 @@ export function mealPlannerAgent(inputValue, recipes) {
   const rankedRecipes = recipes
     .map((recipe) => scoreRecipe(recipe, ingredients))
     .filter((recipe) => recipe.matchScore > 0)
-    .sort((a, b) => b.matchScore - a.matchScore || a.time_minutes - b.time_minutes)
+    .sort((a, b) => {
+      const aMinutes = Number.isFinite(a.time_minutes) ? a.time_minutes : Number.MAX_SAFE_INTEGER;
+      const bMinutes = Number.isFinite(b.time_minutes) ? b.time_minutes : Number.MAX_SAFE_INTEGER;
+      return b.matchScore - a.matchScore || aMinutes - bMinutes;
+    })
     .slice(0, 6);
 
   return {
@@ -75,5 +81,12 @@ export function mealPlannerAgent(inputValue, recipes) {
     title: rankedRecipes.length ? 'ပါဝင်ပစ္စည်းနဲ့ ကိုက်ညီတဲ့ ဟင်းများ' : 'ကိုက်ညီတဲ့ဟင်း မတွေ့သေးပါ',
     ingredients,
     recipes: rankedRecipes,
+    emptyMessageMm: 'ဒီပစ္စည်းတွေနဲ့ ကိုက်ညီတဲ့ ဟင်းချက်နည်းကို လောလောဆယ် local recipe data ထဲမှာ မတွေ့သေးပါ။ နောက်ပိုင်းမှာ AI Assistant နဲ့ အကြံပြုပေးနိုင်အောင် ထည့်သွင်းပါမယ်။',
+    emptyMessageEn: 'No matching recipe was found in the local recipe data yet. AI suggestion will be added later.',
   };
+}
+
+// Future placeholder: local search can call an AI fallback here after Gemini/Claude/OpenAI support is explicitly added.
+export function futureAiFallbackPlaceholder() {
+  return null;
 }

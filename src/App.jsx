@@ -55,6 +55,7 @@ function getDifficultyTone(recipe) {
 
 function RecipeCard({ recipe, active, onSelect }) {
   const tone = getDifficultyTone(recipe);
+  const recipeTime = recipe.time ?? 'အချိန်မဖော်ပြထားပါ';
 
   return (
     <button className={`recipe-card ${active ? 'active' : ''}`} onClick={() => onSelect(recipe)}>
@@ -68,7 +69,7 @@ function RecipeCard({ recipe, active, onSelect }) {
       <span className="recipe-card-meta">
         <span className="time-badge compact">
           <span aria-hidden="true">⏱</span>
-          {recipe.time}
+          {recipeTime}
         </span>
         <span className={`difficulty-badge ${tone}`}>
           <Flame size={14} aria-hidden="true" />
@@ -94,7 +95,10 @@ function RecipeDetail({ recipe, onBack }) {
   }
 
   const tone = getDifficultyTone(recipe);
-  const completedCount = recipe.steps_mm.filter((_, index) => checkedSteps[`${recipe.id}-${index}`]).length;
+  const recipeIngredients = recipe.ingredients_mm ?? recipe.ingredients ?? [];
+  const recipeSteps = recipe.steps_mm ?? recipe.steps ?? [];
+  const recipeTime = recipe.time ?? 'အချိန်မဖော်ပြထားပါ';
+  const completedCount = recipeSteps.filter((_, index) => checkedSteps[`${recipe.id}-${index}`]).length;
 
   function toggleStep(index) {
     const stepKey = `${recipe.id}-${index}`;
@@ -123,7 +127,7 @@ function RecipeDetail({ recipe, onBack }) {
         <div className="detail-badge-stack">
           <div className="time-badge">
             <span aria-hidden="true">⏱</span>
-            {recipe.time}
+            {recipeTime}
           </div>
           <div className={`difficulty-badge ${tone}`}>
             <Flame size={14} aria-hidden="true" />
@@ -139,7 +143,7 @@ function RecipeDetail({ recipe, onBack }) {
             ပါဝင်ပစ္စည်းများ
           </h3>
           <div className="ingredient-list">
-            {recipe.ingredients_mm.map((item) => (
+            {recipeIngredients.map((item) => (
               <span key={item} className="ingredient-chip">{item}</span>
             ))}
           </div>
@@ -149,10 +153,10 @@ function RecipeDetail({ recipe, onBack }) {
           <h3>
             <ListChecks size={16} aria-hidden="true" />
             ချက်ပြုတ်နည်း
-            <span className="step-progress">{completedCount}/{recipe.steps_mm.length}</span>
+            <span className="step-progress">{completedCount}/{recipeSteps.length}</span>
           </h3>
           <ol className="steps-list">
-            {recipe.steps_mm.map((step, index) => (
+            {recipeSteps.map((step, index) => (
               <li key={index} className={checkedSteps[`${recipe.id}-${index}`] ? 'done' : ''}>
                 <label className="step-check">
                   <input
@@ -308,7 +312,8 @@ export default function App() {
           ) : (
             <div className="no-result idle-state">
               <Sparkles size={34} aria-hidden="true" />
-              <p>ဒီနေ့စားချင်တာကို အမြန်ဆုံး ဆုံးဖြတ်ပေးဖို့ အသင့်ပါ။</p>
+              <p>{result.intent === 'ingredients' ? result.emptyMessageMm : 'ဒီနေ့စားချင်တာကို အမြန်ဆုံး ဆုံးဖြတ်ပေးဖို့ အသင့်ပါ။'}</p>
+              {result.intent === 'ingredients' ? <p className="empty-message-en">{result.emptyMessageEn}</p> : null}
             </div>
           )}
         </div>
