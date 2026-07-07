@@ -2,6 +2,7 @@ export function formatDifficulty(value) {
   const labels = {
     easy: 'လွယ်',
     medium: 'အလယ်အလတ်',
+    hard: 'ခက်',
   };
 
   return labels[value] ?? value;
