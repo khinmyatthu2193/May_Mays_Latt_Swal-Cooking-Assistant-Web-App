@@ -62,7 +62,6 @@ function RecipeCard({ recipe, active, onSelect }) {
       <span className="recipe-card-top">
         <span className="recipe-title-group">
           <span className="recipe-card-title">{recipe.name_mm}</span>
-          <span className="recipe-card-sub">{recipe.name_en}</span>
         </span>
       </span>
 
@@ -121,7 +120,6 @@ function RecipeDetail({ recipe, onBack }) {
           <div>
             <p className="detail-eyebrow">ရွေးထားသောဟင်းလျာ</p>
             <h2>{recipe.name_mm}</h2>
-            <p className="detail-name-en">{recipe.name_en}</p>
           </div>
         </div>
         <div className="detail-badge-stack">

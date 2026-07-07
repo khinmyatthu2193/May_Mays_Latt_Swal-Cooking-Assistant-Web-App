@@ -2,7 +2,6 @@
   {
     "id": "egg_tomato_curry",
     "name_mm": "ကြက်ဥခရမ်းချဉ်သီးချက်",
-    "name_en": "Egg Tomato Curry",
     "ingredients": [
       "ကြက်ဥ",
       "ခရမ်းချဉ်သီး",
@@ -47,7 +46,6 @@
   {
     "id": "fried_rice",
     "name_mm": "ထမင်းကြော်",
-    "name_en": "Fried Rice",
     "ingredients": [
       "ထမင်း",
       "ကြက်ဥ",
@@ -92,7 +90,6 @@
   {
     "id": "chicken_potato_curry",
     "name_mm": "ကြက်သားအာလူးဟင်း",
-    "name_en": "Chicken Potato Curry",
     "ingredients": [
       "ကြက်သား",
       "အာလူး",
@@ -140,7 +137,6 @@
   {
     "id": "fish_sour_curry",
     "name_mm": "ငါးချဉ်ရည်ဟင်း",
-    "name_en": "Fish Sour Curry",
     "ingredients": [
       "ငါး",
       "ခရမ်းချဉ်သီး",
@@ -185,7 +181,6 @@
   {
     "id": "roselle_soup",
     "name_mm": "ချဉ်ပေါင်ဟင်းချို",
-    "name_en": "Roselle Leaf Soup",
     "ingredients": [
       "ချဉ်ပေါင်ရွက်",
       "ပုစွန်ခြောက်",
@@ -227,7 +222,6 @@
   {
     "id": "tea_leaf_salad",
     "name_mm": "လက်ဖက်သုပ်",
-    "name_en": "Tea Leaf Salad",
     "ingredients": [
       "လက်ဖက်",
       "ပဲကြော်",
@@ -272,7 +266,6 @@
   {
     "id": "pennywort_salad",
     "name_mm": "မြင်းခွာရွက်သုပ်",
-    "name_en": "Pennywort Salad",
     "ingredients": [
       "မြင်းခွာရွက်",
       "ကြက်သွန်နီ",
@@ -317,7 +310,6 @@
   {
     "id": "water_spinach_stir_fry",
     "name_mm": "ကန်စွန်းရွက်ကြော်",
-    "name_en": "Water Spinach Stir Fry",
     "ingredients": [
       "ကန်စွန်းရွက်",
       "ကြက်သွန်ဖြူ",
@@ -362,7 +354,6 @@
   {
     "id": "lentil_soup",
     "name_mm": "ပဲဟင်းချို",
-    "name_en": "Lentil Soup",
     "ingredients": [
       "ပဲနီလေး",
       "ကြက်သွန်နီ",
@@ -407,7 +398,6 @@
   {
     "id": "tofu_nway",
     "name_mm": "တိုဖူးနွေး",
-    "name_en": "Warm Shan Tofu",
     "ingredients": [
       "တိုဖူးမှုန့်",
       "ရေ",
@@ -452,7 +442,6 @@
   {
     "id": "pork_mustard_curry",
     "name_mm": "ဝက်သားမုန်ညင်းချဉ်ဟင်း",
-    "name_en": "Pork Mustard Green Curry",
     "ingredients": [
       "ဝက်သား",
       "မုန်ညင်းချဉ်",
@@ -497,7 +486,6 @@
   {
     "id": "okra_fish_paste_dip",
     "name_mm": "ရုံးပတီသီးငါးပိချက်",
-    "name_en": "Okra Fish Paste Dip",
     "ingredients": [
       "ရုံးပတီသီး",
       "ငါးပိ",
@@ -542,7 +530,6 @@
   {
     "id": "chicken_basil_stir_fry",
     "name_mm": "ကြက်သားပင်စိမ်းကြော်",
-    "name_en": "Chicken Basil Stir Fry",
     "ingredients": [
       "ကြက်သား",
       "ပင်စိမ်း",
@@ -587,7 +574,6 @@
   {
     "id": "prawn_tamarind_curry",
     "name_mm": "ပုစွန်မန်ကျည်းချက်",
-    "name_en": "Prawn Tamarind Curry",
     "ingredients": [
       "ပုစွန်",
       "မန်ကျည်းရည်",
@@ -632,7 +618,6 @@
   {
     "id": "pumpkin_curry",
     "name_mm": "ရွှေဖရုံသီးဟင်း",
-    "name_en": "Pumpkin Curry",
     "ingredients": [
       "ရွှေဖရုံသီး",
       "ကြက်သွန်နီ",
@@ -677,7 +662,6 @@
   {
     "id": "cabbage_stir_fry",
     "name_mm": "ဂေါ်ဖီထုပ်ကြော်",
-    "name_en": "Cabbage Stir Fry",
     "ingredients": [
       "ဂေါ်ဖီထုပ်",
       "ကြက်သွန်ဖြူ",
@@ -722,7 +706,6 @@
   {
     "id": "eggplant_garlic_curry",
     "name_mm": "ခရမ်းသီးကြက်သွန်ဖြူချက်",
-    "name_en": "Eggplant Garlic Curry",
     "ingredients": [
       "ခရမ်းသီး",
       "ကြက်သွန်ဖြူ",
@@ -767,7 +750,6 @@
   {
     "id": "beef_potato_curry",
     "name_mm": "အမဲသားအာလူးဟင်း",
-    "name_en": "Beef Potato Curry",
     "ingredients": [
       "အမဲသား",
       "အာလူး",
@@ -812,7 +794,6 @@
   {
     "id": "fish_paste_fried_rice",
     "name_mm": "ငါးပိထမင်းကြော်",
-    "name_en": "Fish Paste Fried Rice",
     "ingredients": [
       "ထမင်း",
       "ငါးပိ",
@@ -857,7 +838,6 @@
   {
     "id": "chicken_noodle_soup",
     "name_mm": "ကြက်သားခေါက်ဆွဲပြုတ်",
-    "name_en": "Chicken Noodle Soup",
     "ingredients": [
       "ခေါက်ဆွဲ",
       "ကြက်သား",
@@ -902,7 +882,6 @@
   {
     "id": "tomato_fish_paste_dip",
     "name_mm": "ခရမ်းချဉ်သီးငါးပိချက်",
-    "name_en": "Tomato Fish Paste Dip",
     "ingredients": [
       "ခရမ်းချဉ်သီး",
       "ငါးပိ",
@@ -947,7 +926,6 @@
   {
     "id": "gourd_soup",
     "name_mm": "ဘူးသီးဟင်းချို",
-    "name_en": "Bottle Gourd Soup",
     "ingredients": [
       "ဘူးသီး",
       "ပုစွန်ခြောက်",
@@ -992,7 +970,6 @@
   {
     "id": "mushroom_garlic_stir_fry",
     "name_mm": "မှိုကြက်သွန်ဖြူကြော်",
-    "name_en": "Mushroom Garlic Stir Fry",
     "ingredients": [
       "မှို",
       "ကြက်သွန်ဖြူ",
@@ -1037,7 +1014,6 @@
   {
     "id": "chickpea_salad",
     "name_mm": "ကုလားပဲသုပ်",
-    "name_en": "Chickpea Salad",
     "ingredients": [
       "ကုလားပဲ",
       "ကြက်သွန်နီ",
@@ -1082,7 +1058,6 @@
   {
     "id": "pork_bamboo_shoot_curry",
     "name_mm": "ဝက်သားမျှစ်ဟင်း",
-    "name_en": "Pork Bamboo Shoot Curry",
     "ingredients": [
       "ဝက်သား",
       "မျှစ်",
@@ -1127,7 +1102,6 @@
   {
     "id": "sweet_corn_soup",
     "name_mm": "ပြောင်းဖူးဟင်းချို",
-    "name_en": "Sweet Corn Soup",
     "ingredients": [
       "ပြောင်းဖူး",
       "ကြက်ဥ",
@@ -1172,7 +1146,6 @@
   {
     "id": "spinach_egg_stir_fry",
     "name_mm": "ဟင်းနုနွယ်ကြက်ဥကြော်",
-    "name_en": "Spinach Egg Stir Fry",
     "ingredients": [
       "ဟင်းနုနွယ်",
       "ကြက်ဥ",
@@ -1217,7 +1190,6 @@
   {
     "id": "catfish_curry",
     "name_mm": "ငါးခူဟင်း",
-    "name_en": "Catfish Curry",
     "ingredients": [
       "ငါးခူ",
       "ကြက်သွန်နီ",
@@ -1262,7 +1234,6 @@
   {
     "id": "banana_bud_salad",
     "name_mm": "ငှက်ပျောဖူးသုပ်",
-    "name_en": "Banana Bud Salad",
     "ingredients": [
       "ငှက်ပျောဖူး",
       "ကြက်သွန်နီ",
@@ -1307,7 +1278,6 @@
   {
     "id": "chicken_coconut_noodle",
     "name_mm": "အုန်းနို့ခေါက်ဆွဲ",
-    "name_en": "Chicken Coconut Noodle",
     "ingredients": [
       "ခေါက်ဆွဲ",
       "ကြက်သား",

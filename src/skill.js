@@ -9,7 +9,7 @@ export function formatDifficulty(value) {
 }
 
 export function formatRecipeSummary(recipe) {
-  return `${recipe.name_mm} / ${recipe.name_en} - ${recipe.time}`;
+  return `${recipe.name_mm} - ${recipe.time}`;
 }
 
 export function formatRecipeDetail(recipe) {
@@ -18,7 +18,7 @@ export function formatRecipeDetail(recipe) {
   const ingredients = recipe.ingredients_mm.map((item) => `- ${item}`).join('\n');
   const steps = recipe.steps_mm.map((step, index) => `${index + 1}. ${step}`).join('\n');
 
-  return `🍛 ${recipe.name_mm} / ${recipe.name_en}
+  return `🍛 ${recipe.name_mm}
 
 ⏱ Cooking Time: ${recipe.time}
 Difficulty: ${formatDifficulty(recipe.difficulty)}

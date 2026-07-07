@@ -34,7 +34,6 @@ function scoreRecipe(recipe, ingredients) {
   const recipeIngredientsEn = recipe.ingredients_en ?? [];
   const searchable = [
     recipe.name_mm,
-    recipe.name_en,
     ...recipeIngredientsMm,
     ...recipeIngredientsEn,
   ].map(normalize);
