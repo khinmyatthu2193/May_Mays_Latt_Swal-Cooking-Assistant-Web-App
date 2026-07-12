@@ -9,6 +9,7 @@
     "preview": "vite preview --host 127.0.0.1"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "@vitejs/plugin-react": "^4.3.4",
     "lucide-react": "^0.468.0",
     "react": "^19.0.0",

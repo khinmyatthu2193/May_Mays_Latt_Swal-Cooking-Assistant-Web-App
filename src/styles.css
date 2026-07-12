@@ -543,6 +543,41 @@ ol {
   padding-right: 4px;
 }
 
+.time-filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.time-filter-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(255, 210, 188, 0.72);
+  background: rgba(255, 255, 255, 0.6);
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 700;
+  transition: all 0.15s ease;
+  cursor: pointer;
+}
+
+.time-filter-chip:hover {
+  border-color: var(--peach);
+  background: var(--peach-soft);
+  color: var(--ink);
+}
+
+.time-filter-chip.active {
+  border-color: var(--peach-strong);
+  background: var(--peach);
+  color: var(--ink);
+  box-shadow: 0 2px 8px rgba(255, 138, 122, 0.3);
+}
+
 .recipe-list::-webkit-scrollbar,
 .formatted-output::-webkit-scrollbar {
   width: 6px;

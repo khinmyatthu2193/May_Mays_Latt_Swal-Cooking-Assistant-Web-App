@@ -28,6 +28,24 @@ const recipeIconMap = {
   tofu_nway: '🥘',
   pork_mustard_curry: '🍖',
   okra_fish_paste_dip: '🌶️',
+  chicken_basil_stir_fry: '🌿',
+  prawn_tamarind_curry: '🦐',
+  pumpkin_curry: '🎃',
+  cabbage_stir_fry: '🥬',
+  eggplant_garlic_curry: '🍆',
+  beef_potato_curry: '🥩',
+  fish_paste_fried_rice: '🍚',
+  chicken_noodle_soup: '🍜',
+  tomato_fish_paste_dip: '🍅',
+  gourd_soup: '🥒',
+  mushroom_garlic_stir_fry: '🍄',
+  chickpea_salad: '🫘',
+  pork_bamboo_shoot_curry: '🎋',
+  sweet_corn_soup: '🌽',
+  spinach_egg_stir_fry: '🥬',
+  catfish_curry: '🐟',
+  banana_bud_salad: '🍌',
+  chicken_coconut_noodle: '🍜',
 };
 
 const difficultyTone = {
@@ -41,6 +59,13 @@ const decisionSteps = [
   'ပါဝင်ပစ္စည်းတွေ စစ်နေပါတယ်...',
   'ကိုက်ညီတဲ့ဟင်းတွေ ရှာနေပါတယ်...',
   'ဟင်းလျာတွေ ရှာတွေ့ပါပြီ',
+];
+
+const TIME_FILTERS = [
+  { key: 'all', label: 'အကုန်', icon: '🍽️' },
+  { key: 'quick', label: 'အမြန် (၂၀ မိနစ်အတွင်း)', icon: '⚡' },
+  { key: 'medium', label: 'အလယ် (၂၀-၄၀ မိနစ်)', icon: '🕐' },
+  { key: 'slow', label: 'ရှည် (၄၀ မိနစ်အထက်)', icon: '🐢' },
 ];
 
 const THINKING_DURATION_MS = 5000;
@@ -60,6 +85,7 @@ function RecipeCard({ recipe, active, onSelect }) {
   return (
     <button className={`recipe-card ${active ? 'active' : ''}`} onClick={() => onSelect(recipe)}>
       <span className="recipe-card-top">
+        <span className="recipe-icon" aria-hidden="true">{getRecipeIcon(recipe)}</span>
         <span className="recipe-title-group">
           <span className="recipe-card-title">{recipe.name_mm}</span>
         </span>
@@ -182,7 +208,19 @@ export default function App() {
   const [showSearch, setShowSearch] = useState(false);
   const [isThinking, setIsThinking] = useState(false);
   const [decisionIndex, setDecisionIndex] = useState(0);
+  const [timeFilter, setTimeFilter] = useState('all');
   const hasResults = result.recipes.length > 0;
+
+  const filteredRecipes = useMemo(() => {
+    if (timeFilter === 'all') return result.recipes;
+    return result.recipes.filter((recipe) => {
+      const mins = recipe.time_minutes ?? 0;
+      if (timeFilter === 'quick') return mins > 0 && mins <= 20;
+      if (timeFilter === 'medium') return mins > 20 && mins <= 40;
+      if (timeFilter === 'slow') return mins > 40;
+      return true;
+    });
+  }, [result.recipes, timeFilter]);
 
   function runPlanner(inputValue = query) {
     setSelectedRecipe(null);
@@ -214,6 +252,11 @@ export default function App() {
   function startIngredientMode() {
     setShowSearch(true);
     setResult(emptyResult);
+    setSelectedRecipe(null);
+  }
+
+  function handleTimeFilter(key) {
+    setTimeFilter(key);
     setSelectedRecipe(null);
   }
 
@@ -293,20 +336,41 @@ export default function App() {
               <p className="panel-eyebrow">ဟင်းလျာအကြံပြုချက်</p>
               <h2>{hasResults ? result.title : 'အပေါ်က ခလုတ်တစ်ခုကို နှိပ်ပြီး စတင်ပါ'}</h2>
             </div>
-            <span className="recipe-count">{result.recipes.length}</span>
+            <span className="recipe-count">{filteredRecipes.length}</span>
           </div>
 
           {hasResults ? (
-            <div className="recipe-list">
-              {result.recipes.map((recipe) => (
-                <RecipeCard
-                  key={recipe.id}
-                  recipe={recipe}
-                  active={selectedRecipe?.id === recipe.id}
-                  onSelect={setSelectedRecipe}
-                />
-              ))}
-            </div>
+            <>
+              <div className="time-filter-bar">
+                {TIME_FILTERS.map((f) => (
+                  <button
+                    key={f.key}
+                    className={`time-filter-chip ${timeFilter === f.key ? 'active' : ''}`}
+                    onClick={() => handleTimeFilter(f.key)}
+                    type="button"
+                  >
+                    <span aria-hidden="true">{f.icon}</span>
+                    {f.label}
+                  </button>
+                ))}
+              </div>
+              <div className="recipe-list">
+                {filteredRecipes.length > 0 ? (
+                  filteredRecipes.map((recipe) => (
+                    <RecipeCard
+                      key={recipe.id}
+                      recipe={recipe}
+                      active={selectedRecipe?.id === recipe.id}
+                      onSelect={setSelectedRecipe}
+                    />
+                  ))
+                ) : (
+                  <div className="no-result">
+                    <p>ဒီအချိန်ပိတ်နဲ့ ကိုက်ညီတဲ့ဟင်း မတွေ့ပါ။</p>
+                  </div>
+                )}
+              </div>
+            </>
           ) : (
             <div className="no-result idle-state">
               <Sparkles size={34} aria-hidden="true" />

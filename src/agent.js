@@ -39,7 +39,15 @@ function scoreRecipe(recipe, ingredients) {
   ].map(normalize);
 
   const matchedIngredients = ingredients.filter((term) =>
-    searchable.some((item) => item.includes(term) || term.includes(item)),
+    searchable.some((item) => {
+      // Exact substring match (item contains term or term contains item)
+      if (item.includes(term) || term.includes(item)) return true;
+      // Prefix match: term is a prefix of any searchable item (e.g. "ကြက်" matches "ကြက်သား")
+      if (item.startsWith(term)) return true;
+      // Reverse prefix: searchable item is a prefix of term
+      if (term.startsWith(item) && item.length >= 2) return true;
+      return false;
+    }),
   );
 
   return {
