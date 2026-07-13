@@ -889,22 +889,6 @@ ol {
 
 .steps-list li {
   position: relative;
-  padding: 0;
-  color: #3f2c26;
-  font-size: 0.92rem;
-  line-height: 1.72;
-  border-left: 0;
-}
-
-.steps-list li + li {
-  margin-top: 9px;
-}
-
-.steps-list li::before {
-  content: none;
-}
-
-.step-check {
   display: grid;
   grid-template-columns: 26px 1fr;
   gap: 10px;
@@ -913,52 +897,27 @@ ol {
   border: 1px solid rgba(255, 218, 197, 0.7);
   border-radius: 18px;
   background: rgba(255, 255, 255, 0.42);
-  cursor: pointer;
-  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+  color: #3f2c26;
+  font-size: 0.92rem;
+  line-height: 1.72;
+  counter-increment: step-counter;
 }
 
-.step-check:hover {
-  transform: translateX(2px);
-  border-color: var(--peach);
-  background: rgba(255, 249, 242, 0.82);
+.steps-list li + li {
+  margin-top: 9px;
 }
 
-.step-check input {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.step-box {
+.steps-list li::before {
+  content: counter(step-counter);
   display: grid;
   width: 26px;
   height: 26px;
   place-items: center;
-  border: 2px solid var(--peach);
-  border-radius: 9px;
-  background: #fff9f2;
+  border-radius: 50%;
+  background: var(--peach-soft);
   color: var(--ink);
   font-size: 0.88rem;
   font-weight: 900;
-}
-
-.step-box::after {
-  content: "";
-}
-
-.step-check input:checked + .step-box {
-  border-color: #72a567;
-  background: #e6f7df;
-}
-
-.step-check input:checked + .step-box::after {
-  content: "✓";
-}
-
-.steps-list li.done .step-copy {
-  color: var(--soft-muted);
-  text-decoration: line-through;
-  text-decoration-thickness: 2px;
 }
 
 .formatted-output {

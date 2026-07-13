@@ -106,8 +106,6 @@ function RecipeCard({ recipe, active, onSelect }) {
 }
 
 function RecipeDetail({ recipe, onBack }) {
-  const [checkedSteps, setCheckedSteps] = useState({});
-
   if (!recipe) {
     return (
       <section className="detail empty">
@@ -123,16 +121,6 @@ function RecipeDetail({ recipe, onBack }) {
   const recipeIngredients = recipe.ingredients_mm ?? recipe.ingredients ?? [];
   const recipeSteps = recipe.steps_mm ?? recipe.steps ?? [];
   const recipeTime = recipe.time ?? 'အချိန်မဖော်ပြထားပါ';
-  const completedCount = recipeSteps.filter((_, index) => checkedSteps[`${recipe.id}-${index}`]).length;
-
-  function toggleStep(index) {
-    const stepKey = `${recipe.id}-${index}`;
-    setCheckedSteps((current) => ({
-      ...current,
-      [stepKey]: !current[stepKey],
-    }));
-  }
-
   return (
     <section className="detail" aria-live="polite">
       <button className="back-button" type="button" onClick={onBack}>
@@ -177,21 +165,10 @@ function RecipeDetail({ recipe, onBack }) {
           <h3>
             <ListChecks size={16} aria-hidden="true" />
             ချက်ပြုတ်နည်း
-            <span className="step-progress">{completedCount}/{recipeSteps.length}</span>
           </h3>
           <ol className="steps-list">
             {recipeSteps.map((step, index) => (
-              <li key={index} className={checkedSteps[`${recipe.id}-${index}`] ? 'done' : ''}>
-                <label className="step-check">
-                  <input
-                    type="checkbox"
-                    checked={Boolean(checkedSteps[`${recipe.id}-${index}`])}
-                    onChange={() => toggleStep(index)}
-                  />
-                  <span className="step-box" aria-hidden="true" />
-                  <span className="step-copy">{step}</span>
-                </label>
-              </li>
+              <li key={index}>{step}</li>
             ))}
           </ol>
         </div>
