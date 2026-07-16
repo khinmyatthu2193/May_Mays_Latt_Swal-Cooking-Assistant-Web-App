@@ -93,6 +93,14 @@ export function mealPlannerAgent(inputValue, recipes) {
   };
 }
 
+export function youtubeSearchUrl(keyword) {
+  return `https://www.youtube.com/results?search_query=${encodeURIComponent(keyword)}`;
+}
+
+export function tiktokSearchUrl(keyword) {
+  return `https://www.tiktok.com/search?q=${encodeURIComponent(keyword)}`;
+}
+
 // Future placeholder: local search can call an AI fallback here after Gemini/Claude/OpenAI support is explicitly added.
 export function futureAiFallbackPlaceholder() {
   return null;

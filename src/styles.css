@@ -920,6 +920,84 @@ ol {
   font-weight: 900;
 }
 
+.detail-video-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-top: 24px;
+  padding: 16px 20px;
+  border: 1px solid rgba(255, 210, 188, 0.72);
+  border-radius: 22px;
+  background: rgba(255, 255, 255, 0.46);
+}
+
+.video-bar-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.video-bar-label svg {
+  color: var(--peach-strong);
+}
+
+.video-bar-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn-youtube,
+.btn-tiktok {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-youtube {
+  background: #ff4444;
+  color: #fff;
+  box-shadow: 0 4px 0 #cc2222, 0 6px 16px rgba(255, 68, 68, 0.3);
+}
+
+.btn-youtube:hover {
+  background: #ee3333;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #cc2222, 0 8px 20px rgba(255, 68, 68, 0.4);
+}
+
+.btn-youtube:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #cc2222, 0 4px 12px rgba(255, 68, 68, 0.3);
+}
+
+.btn-tiktok {
+  background: #111;
+  color: #fff;
+  box-shadow: 0 4px 0 #000, 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.btn-tiktok:hover {
+  background: #222;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #000, 0 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+.btn-tiktok:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 0 #000, 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
 .formatted-output {
   max-height: 210px;
   margin-top: 22px;
@@ -1188,6 +1266,22 @@ ol {
 
   .detail {
     min-height: auto;
+  }
+
+  .detail-video-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .video-bar-buttons {
+    width: 100%;
+  }
+
+  .btn-youtube,
+  .btn-tiktok {
+    flex: 1;
+    justify-content: center;
   }
 }
 

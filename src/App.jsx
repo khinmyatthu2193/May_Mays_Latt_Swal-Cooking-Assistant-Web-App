@@ -8,44 +8,45 @@ import {
   Shuffle,
   Sparkles,
   Utensils,
+  Video,
   X,
 } from 'lucide-react';
 import logoUrl from '../logo.png';
 import recipes from '../data/recipes.json';
-import { mealPlannerAgent } from './agent.js';
+import { mealPlannerAgent, youtubeSearchUrl, tiktokSearchUrl } from './agent.js';
 import { formatDifficulty } from './skill.js';
 
 const recipeIconMap = {
-  egg_tomato_curry: '🍳',
-  fried_rice: '🍚',
-  roselle_soup: '🥣',
-  chicken_potato_curry: '🍛',
-  fish_sour_curry: '🐟',
-  pennywort_salad: '🥗',
-  water_spinach_stir_fry: '🥬',
-  lentil_soup: '🍲',
-  tea_leaf_salad: '🍃',
-  tofu_nway: '🥘',
-  pork_mustard_curry: '🍖',
-  okra_fish_paste_dip: '🌶️',
-  chicken_basil_stir_fry: '🌿',
-  prawn_tamarind_curry: '🦐',
-  pumpkin_curry: '🎃',
-  cabbage_stir_fry: '🥬',
-  eggplant_garlic_curry: '🍆',
-  beef_potato_curry: '🥩',
-  fish_paste_fried_rice: '🍚',
-  chicken_noodle_soup: '🍜',
-  tomato_fish_paste_dip: '🍅',
-  gourd_soup: '🥒',
-  mushroom_garlic_stir_fry: '🍄',
-  chickpea_salad: '🫘',
-  pork_bamboo_shoot_curry: '🎋',
-  sweet_corn_soup: '🌽',
-  spinach_egg_stir_fry: '🥬',
-  catfish_curry: '🐟',
-  banana_bud_salad: '🍌',
-  chicken_coconut_noodle: '🍜',
+  1: '🍳',
+  2: '🍚',
+  3: '🍛',
+  4: '🐟',
+  5: '🥣',
+  6: '🍃',
+  7: '🥗',
+  8: '🥬',
+  9: '🍲',
+  10: '🥘',
+  11: '🍖',
+  12: '🌶️',
+  13: '🌿',
+  14: '🦐',
+  15: '🎃',
+  16: '🥬',
+  17: '🍆',
+  18: '🥩',
+  19: '🍚',
+  20: '🍜',
+  21: '🍅',
+  22: '🥒',
+  23: '🍄',
+  24: '🫘',
+  25: '🎋',
+  26: '🌽',
+  27: '🥬',
+  28: '🐟',
+  29: '🍌',
+  30: '🍜',
 };
 
 const difficultyTone = {
@@ -171,6 +172,31 @@ function RecipeDetail({ recipe, onBack }) {
               <li key={index}>{step}</li>
             ))}
           </ol>
+        </div>
+      </div>
+
+      <div className="detail-video-bar">
+        <p className="video-bar-label">
+          <Video size={16} aria-hidden="true" />
+          ဗီဒီယိုနဲ့ ကြည့်ချင်ရင်
+        </p>
+        <div className="video-bar-buttons">
+          <a
+            className="btn-youtube"
+            href={youtubeSearchUrl(recipe.video_keyword_mm ?? recipe.name_mm + 'ချက်နည်း')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ▶ YouTube
+          </a>
+          <a
+            className="btn-tiktok"
+            href={tiktokSearchUrl(recipe.video_keyword_mm ?? recipe.name_mm + 'ချက်နည်း')}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ♪ TikTok
+          </a>
         </div>
       </div>
     </section>

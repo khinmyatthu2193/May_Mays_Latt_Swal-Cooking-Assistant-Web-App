@@ -4,15 +4,16 @@
 
 ## What it does
 
-Open the app, tap **"ဒီနေ့ ဘာချက်ရမလဲ"** (What should I cook today?) and get 3 random Myanmar recipe suggestions. Or tap **"ပစ္စည်းနဲ့ချက်မယ်"** (Cook with what I have), type your available ingredients, and the app finds the best matching recipes from a local dataset of 30+ traditional Myanmar dishes.
+Open the app, tap **"ဒီနေ့ ဘာချက်ရမလဲ"** (What should I cook today?) and get 3 random Myanmar recipe suggestions. Or tap **"ပစ္စည်းနဲ့ချက်မယ်"** (Cook with what I have), type your available ingredients, and the app finds the best matching recipes from a local dataset of 70 Myanmar dishes.
 
 ## Features
 
 - 🎲 **Random meal suggestion** — tap once, get 3 recipe ideas instantly
 - 🔍 **Ingredient-based search** — type what you have, find what you can cook
 - ⏱ **Cooking time filter** — Quick (<20 min), Medium (20–40 min), Slow (40+ min)
-- 📋 **Step-by-step checklist** — tick off steps as you cook
-- 🍛 **30+ Myanmar recipes** — from ကြက်ဥခရမ်းချဉ်သီးချက် to အုန်းနို့ခေါက်ဆွဲ
+- 📋 **Step-by-step instructions** — follow clear cooking directions for every dish
+- 🍛 **70 Myanmar recipes** — stored locally with unique numeric IDs
+- 🎬 **Recipe video search** — open matching YouTube or TikTok searches from recipe details
 - 🇲🇲 **Myanmar-first interface** — all text in Burmese, no English mixed in
 - 📱 **Mobile-friendly** — works on phones, tablets, and desktop
 - 🧠 **AI agent architecture** — deterministic MCP + Skill + Agent workflow
@@ -34,7 +35,7 @@ Open the app, tap **"ဒီနေ့ ဘာချက်ရမလဲ"** (What sho
                             ▼                     ▼
                     ┌──────────────┐     ┌──────────────┐
                     │   MCP        │     │  recipes.json│
-                    │ Filesystem   │────▶│  (30+ dishes)│
+                    │ Filesystem   │────▶│  (70 dishes) │
                     └──────────────┘     └──────────────┘
 ```
 
@@ -69,11 +70,13 @@ npm run build
 npm run preview
 ```
 
+The development server starts at `http://127.0.0.1:5174`. If that port is already occupied, Vite automatically selects the next available port and opens the correct URL.
+
 ## Project Structure
 
 ```
 ├── data/
-│   └── recipes.json          # 30+ Myanmar recipes with MM/EN names
+│   └── recipes.json          # 70 Myanmar recipes with numeric IDs
 ├── src/
 │   ├── App.jsx                # Main UI components
 │   ├── agent.js               # Meal planner agent (intent detection + scoring)
